@@ -3,15 +3,13 @@
 
 
 
-
-<button class='lf--submit' type="submit">LOGIN</button>
-<button class='lf--submit' type="submit">REGISTER</button>
+<button class='lf--submit' *ngIf="(isAuth | async)" (click)="logIn()">LOGIN</button>
 
 
 
 
 <div *ngIf="(isAuth | async)">
-  <form #loginForm="ngForm" (ngSubmit)="logUser(loginForm)" class='login-form'>
+  <form #loginForm="ngForm" (ngSubmit)="logUser(loginForm)" *ngIf="isLoginClicked" class='login-form'>
     <div class="flex-row logo">
       <h1>ВХІД</h1>
     </div>
@@ -25,7 +23,7 @@
   </form>
 
 
-  <div *ngIf="(isAuth | async)">
+  <div *ngIf="!(isAuth | async)">
     <form #registerForm="ngForm" (ngSubmit)="regUser(registerForm)" class='login-form'>
       <div class="flex-row logo">
         <h1>РЕЄСТРАЦІЯ</h1>

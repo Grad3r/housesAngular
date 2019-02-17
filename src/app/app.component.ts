@@ -11,7 +11,7 @@ import {BehaviorSubject} from 'rxjs';
 export class AppComponent {
 
 
-
+  isLoginClicked: boolean = false;
   isLogined = !!localStorage.getItem('token');
 
   isAuth = new BehaviorSubject<boolean>(this.isLogined);
@@ -47,7 +47,9 @@ export class AppComponent {
     });
 
   }
-
+  logIn() {
+    this.isLoginClicked = true;
+  }
   logOut() {
     localStorage.removeItem('token');
     localStorage.removeItem('refresh');
