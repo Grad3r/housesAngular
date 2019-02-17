@@ -1,0 +1,53 @@
+<body>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+
+
+
+
+<button class='lf--submit' type="submit">LOGIN</button>
+<button class='lf--submit' type="submit">REGISTER</button>
+
+
+
+
+<div *ngIf="(isAuth | async)">
+  <form #loginForm="ngForm" (ngSubmit)="logUser(loginForm)" class='login-form'>
+    <div class="flex-row logo">
+      <h1>ВХІД</h1>
+    </div>
+    <div class="flex-row">
+      <input class='lf--input' type="email" name="email" required ngModel placeholder="Введіть ваш email">
+    </div>
+    <div class="flex-row">
+      <input class='lf--input' type="password" name="password" required ngModel placeholder="Введіть ваш пароль">
+    </div>
+    <button class='lf--submit' type="submit">LOGIN</button>
+  </form>
+
+
+  <div *ngIf="(isAuth | async)">
+    <form #registerForm="ngForm" (ngSubmit)="regUser(registerForm)" class='login-form'>
+      <div class="flex-row logo">
+        <h1>РЕЄСТРАЦІЯ</h1>
+      </div>
+      <div class="flex-row">
+        <input class='lf--input' type="text" name="name" required ngModel placeholder="Введіть ваше імя">
+      </div>
+      <div class="flex-row">
+        <input class='lf--input' type="password" name="password" required ngModel placeholder="Введіть ваш пароль">
+      </div>
+      <div class="flex-row">
+        <input class='lf--input' type="email" name="email" required ngModel placeholder="Введіть ваш email">
+      </div>
+  <button class='lf--submit' type="submit">REGISTER</button>
+    </form>
+
+      <div *ngIf="!(isAuth | async)">
+        <button (click)="logOut()">LOGOUT</button>
+        <button routerLink="/allhouse">SHOW ALL MY HOUSES</button>
+      </div>
+
+
+
+
+  <router-outlet></router-outlet>
